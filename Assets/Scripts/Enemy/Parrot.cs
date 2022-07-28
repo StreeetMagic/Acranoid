@@ -4,8 +4,8 @@ namespace Enemy
     {
         private void Update()
         {
-            Movement.StrafeX();
-            Movement.StrafeY();
+            Movement.MoveX();
+            Movement.MoveY();
         }
     }
 }

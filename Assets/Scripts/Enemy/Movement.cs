@@ -47,7 +47,7 @@ namespace Enemy
             transform.position += new Vector3(0, CurrentYMoveSpeed * Time.deltaTime, 0);
         }
 
-        public void StrafeY()
+        public void MoveY()
         {
             if (GoesTop)
             {
@@ -65,7 +65,7 @@ namespace Enemy
             }
         }
 
-        public void StrafeX()
+        public void MoveX()
         {
             if (GoesLeft)
             {

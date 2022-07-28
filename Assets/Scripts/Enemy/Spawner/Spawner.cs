@@ -71,8 +71,6 @@ namespace Enemy
             }
         }
 
-
-
         private bool TryGetObject(out Enemy result)
         {
             int randomEnemyPool = Random.Range(0, _enemyEnabler.EnemiesAvaliable);
