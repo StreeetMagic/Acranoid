@@ -11,7 +11,8 @@ namespace Enemy
         [SerializeField] private MainWeapon _mainWeapon;
         [SerializeField] private Transform _activeBulletPool;
         [SerializeField] private Transform _inactivePool;
-        [SerializeField] private Transform _activePool;
+        [SerializeField] private Transform _activePoolTransform;
+        [SerializeField] private ActiveEnemyPool _activePool;
 
         [SerializeField] protected Movement Movement;
 
@@ -31,7 +32,7 @@ namespace Enemy
         private void OnEnable()
         {
             _mainWeapon.SetActiveBulletPool(_activeBulletPool);
-            _activePool = transform.parent;
+            _activePoolTransform = transform.parent;
             XPosition = GetRandomXposition();
         }
 
@@ -47,12 +48,6 @@ namespace Enemy
                 player.TakeDamage(CurrentHealth);
                 Die();
             }
-        }
-
-        public void SetAliveContainer(ActiveEnemyPool parent)
-        {
-            transform.SetParent(parent.transform);
-            _activePool = parent.transform;
         }
         
         private int GetRandomXposition()
@@ -70,7 +65,7 @@ namespace Enemy
         private void Die()
         {
             CurrentHealth = MaxHealth;
-            _activePool.GetComponent<ActiveEnemyPool>().GetEnemyTransform(this);
+            _activePool.GetEnemyTransform(this);
             gameObject.SetActive(false);
         }
 
@@ -88,5 +83,14 @@ namespace Enemy
         {
             _activeBulletPool = pool;
         }
+
+        public void SetAliveContainer(ActiveEnemyPool parent)
+        {
+            transform.SetParent(parent.transform);
+            _activePoolTransform = parent.transform;
+            _activePool = parent;
+        }
+
+
     }
 }
