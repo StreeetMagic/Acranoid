@@ -22,7 +22,7 @@ namespace Player
             _playerUinputActions.Player.Move.performed += ctx => OnMove();
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             OnMove();
             Move(_direction);
