@@ -29,13 +29,14 @@ namespace Enemy
 
             FillPools();
             Initialize();
+            StartCoroutine(Spawning());
         }
 
-        private void Update()
+        private IEnumerator Spawning()
         {
-            ElapsedTime += Time.deltaTime;
-
-            if (ElapsedTime >= _cooldownUpgrader.CurrentSpawnCooldown)
+            bool gameIsOn = true;
+            
+            while (gameIsOn)
             {
                 if (TryGetObject(out Enemy enemy))
                 {
@@ -43,6 +44,8 @@ namespace Enemy
                     int spawnPointNumber = Random.Range(0, _spawnPoints.Length);
                     SetEnemy(enemy, _spawnPoints[spawnPointNumber].position);
                 }
+
+                yield return new WaitForSeconds(_cooldownUpgrader.CurrentSpawnCooldown);
             }
         }
 
@@ -67,6 +70,8 @@ namespace Enemy
                 }
             }
         }
+
+
 
         private bool TryGetObject(out Enemy result)
         {
