@@ -1,25 +1,28 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
-public class CurrentScoreText : MonoBehaviour
+namespace Scripts.UI
 {
-    [SerializeField] private Player.Player _player;
-    [SerializeField] private TextMeshProUGUI _text;
-
-    private void OnEnable()
+    public class CurrentScoreText : MonoBehaviour
     {
-        OnScoreChanged(0);
-        _player.ScoreChanged += OnScoreChanged;
-    }
+        [SerializeField] private Player.Player _player;
+        [SerializeField] private TextMeshProUGUI _text;
 
-    private void OnDisable()
-    {
-        _player.ScoreChanged -= OnScoreChanged;
-    }
+        private void OnEnable()
+        {
+            OnScoreChanged(0);
+            _player.ScoreChanged += OnScoreChanged;
+        }
 
-    private void OnScoreChanged(float score) 
-    {
-        string text = "Score:" + _player.Score.ToString();
-        _text.text = text;
+        private void OnDisable()
+        {
+            _player.ScoreChanged -= OnScoreChanged;
+        }
+
+        private void OnScoreChanged(float score)
+        {
+            var text = "Score:" + _player.Score;
+            _text.text = text;
+        }
     }
 }

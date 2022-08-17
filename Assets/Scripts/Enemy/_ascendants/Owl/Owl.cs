@@ -1,12 +1,11 @@
-namespace Enemy
+namespace Scripts.Enemy.Owl
 {
-    public class Sparrow : Enemy
+    public class Owl : Enemy
     {
         private void Update()
         {
-            Movement.MoveX();
             Movement.MoveY();
+            Movement.MoveLeft();
         }
     }
 }
-

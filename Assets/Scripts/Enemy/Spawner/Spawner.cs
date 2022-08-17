@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
-namespace Enemy
+namespace Scripts.Enemy.Spawner
 {
     [RequireComponent(typeof(CooldownUpgrader))]
     [RequireComponent(typeof(EnemyEnabler))]
@@ -17,7 +16,7 @@ namespace Enemy
         [SerializeField] private CooldownUpgrader _cooldownUpgrader;
         [SerializeField] private EnemyEnabler _enemyEnabler;
 
-        private List<List<Enemy>> _pools = new List<List<Enemy>>();
+        private readonly List<List<Enemy>> _pools = new List<List<Enemy>>();
 
         [field: SerializeField] public float ElapsedTime { get; private set; } = 50;
         public int EnemyCount => _enemies.Length;
@@ -34,14 +33,14 @@ namespace Enemy
 
         private IEnumerator Spawning()
         {
-            bool gameIsOn = true;
-            
+            var gameIsOn = true;
+
             while (gameIsOn)
             {
-                if (TryGetObject(out Enemy enemy))
+                if (TryGetObject(out var enemy))
                 {
                     ElapsedTime = 0;
-                    int spawnPointNumber = Random.Range(0, _spawnPoints.Length);
+                    var spawnPointNumber = Random.Range(0, _spawnPoints.Length);
                     SetEnemy(enemy, _spawnPoints[spawnPointNumber].position);
                 }
 
@@ -51,31 +50,27 @@ namespace Enemy
 
         private void FillPools()
         {
-            for (int i = 0; i < _enemies.Length; i++)
-            {
-                _pools.Add(new List<Enemy>());
-            }
+            for (var i = 0; i < _enemies.Length; i++) _pools.Add(new List<Enemy>());
         }
 
         private void Initialize()
         {
-            for (int i = 0; i < _enemies.Length; i++)
+            for (var i = 0; i < _enemies.Length; i++)
+            for (var j = 0; j < _enemies[i].MaxCount; j++)
             {
-                for (int j = 0; j < _enemies[i].MaxCount; j++)
-                {
-                    Enemy spawned = Instantiate(_enemies[i], _inactiveEnemyPool.transform);
-                    spawned.SetActiveBulletPool(_activeBulletPool);
-                    spawned.gameObject.SetActive(false);
-                    _pools[i].Add(spawned);
-                }
+                var spawned = Instantiate(_enemies[i], _inactiveEnemyPool.transform);
+                spawned.SetActiveBulletPool(_activeBulletPool);
+                spawned.gameObject.SetActive(false);
+                _pools[i].Add(spawned);
             }
         }
 
         private bool TryGetObject(out Enemy result)
         {
-            int randomEnemyPool = Random.Range(0, _enemyEnabler.EnemiesAvaliable);
-            int randomEnemy = Random.Range(0, _pools[randomEnemyPool].Count);
+            var randomEnemyPool = Random.Range(0, _enemyEnabler.EnemiesAvaliable);
+            var randomEnemy = Random.Range(0, _pools[randomEnemyPool].Count);
             result = _pools[randomEnemyPool][randomEnemy];
+
             return result.gameObject.activeSelf == false;
         }
 
@@ -87,4 +82,3 @@ namespace Enemy
         }
     }
 }
-

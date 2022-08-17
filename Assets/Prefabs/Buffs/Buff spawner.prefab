@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2956717156052783508}
-  - component: {fileID: 2956717156052783509}
+  - component: {fileID: 6702807906257300596}
   m_Layer: 0
   m_Name: Buff spawner
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2956717156052783509
+--- !u!114 &6702807906257300596
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,14 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnPoint: {fileID: 0}
-  _buffs:
-  - {fileID: 5044013537897360115, guid: 26df1f07299095441a120a74d74a2856, type: 3}
-  - {fileID: 3783307293908559051, guid: eecc2e5c6778ebe4a851c1f34820996c, type: 3}
-  - {fileID: 2508637908205926571, guid: 4b2dff647179ef44d805df4993124f2f, type: 3}
-  _container: {fileID: 2956717156873865945}
+  _buffs: []
+  _container: {fileID: 0}
   _ActiveBuffPool: {fileID: 0}
   _activeEnemyPool: {fileID: 0}
-  <Capacity>k__BackingField: 2
+  <Capacity>k__BackingField: 0
 --- !u!1 &2956717156873865945
 GameObject:
   m_ObjectHideFlags: 0

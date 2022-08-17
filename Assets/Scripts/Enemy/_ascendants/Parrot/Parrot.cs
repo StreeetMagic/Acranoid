@@ -1,4 +1,4 @@
-namespace Enemy
+namespace Scripts.Enemy.Parrot
 {
     public class Parrot : Enemy
     {
@@ -9,4 +9,3 @@ namespace Enemy
         }
     }
 }
-

@@ -1,4 +1,4 @@
-namespace Enemy
+namespace Scripts.Enemy.Crow
 {
     public class Crow : Enemy
     {
@@ -11,4 +11,3 @@ namespace Enemy
         }
     }
 }
-

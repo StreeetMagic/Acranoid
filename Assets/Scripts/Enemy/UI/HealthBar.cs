@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Enemy
+namespace Scripts.Enemy.UI
 {
     public class HealthBar : MonoBehaviour
     {
@@ -26,10 +26,7 @@ namespace Enemy
 
         private void OnHealthChanged(float value)
         {
-            if (_coroutine != null)
-            {
-                StopCoroutine(_coroutine);
-            }
+            if (_coroutine != null) StopCoroutine(_coroutine);
             _coroutine = StartCoroutine(Draw(value));
         }
 
@@ -37,7 +34,8 @@ namespace Enemy
         {
             while (_slider.value != value)
             {
-                _slider.value = (Mathf.MoveTowards(_slider.value, value, Time.deltaTime * RecoveryRate));
+                _slider.value = Mathf.MoveTowards(_slider.value, value, Time.deltaTime * RecoveryRate);
+
                 yield return null;
             }
         }

@@ -1,15 +1,11 @@
 using System;
+using Scripts.Enemy.Spawner;
 using UnityEngine;
-using UnityEngine.Events;
 
-namespace Player
+namespace Scripts.Player
 {
     public class Player : MonoBehaviour
     {
-        public event Action <float> HealthChanged;
-        public event Action <float> ArmorChanged;
-        public event Action <float> ScoreChanged;
-
         [SerializeField] private PlayerMainWeapon _mainWeapon;
         [SerializeField] private ActiveEnemyPool _activeEnemyPool;
 
@@ -17,7 +13,13 @@ namespace Player
         [field: SerializeField] public float StartingArmor { get; private set; } = 10;
         [field: SerializeField] public float Health { get; private set; } = 5;
         [field: SerializeField] public float Armor { get; private set; } = 5;
-        [field: SerializeField] public float Score { get; private set; } = 0;
+        [field: SerializeField] public float Score { get; private set; }
+
+        private void Awake()
+        {
+            Health = StartingHealth;
+            Armor = StartingArmor;
+        }
 
         private void OnEnable()
         {
@@ -29,11 +31,9 @@ namespace Player
             _activeEnemyPool.EnemyDied -= OnEnemyDied;
         }
 
-        private void Awake()
-        {
-            Health = StartingHealth;
-            Armor = StartingArmor;
-        }
+        public event Action<float> HealthChanged;
+        public event Action<float> ArmorChanged;
+        public event Action<float> ScoreChanged;
 
         public void TakeDamage(float damage)
         {
@@ -41,10 +41,7 @@ namespace Player
             {
                 Armor -= damage;
 
-                if (Armor < 0)
-                {
-                    Armor = 0;
-                }
+                if (Armor < 0) Armor = 0;
                 ArmorChanged?.Invoke(Armor);
             }
             else
@@ -68,8 +65,8 @@ namespace Player
 
         public void GainHealth()
         {
-            float maxHealth = StartingHealth;
-            
+            var maxHealth = StartingHealth;
+
             if (Health < maxHealth)
             {
                 Health++;
@@ -105,4 +102,3 @@ namespace Player
         }
     }
 }
-

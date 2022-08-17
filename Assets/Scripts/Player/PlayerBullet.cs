@@ -1,12 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
+using Scripts.MainWeapon.Bullet;
 using UnityEngine;
 
-namespace Player
+namespace Scripts.Player
 {
     public class PlayerBullet : Bullet
     {
-
+        private void Update()
+        {
+            transform.Translate(Vector3.up * Speed * Time.deltaTime);
+        }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
@@ -16,18 +18,11 @@ namespace Player
                 gameObject.SetActive(false);
             }
 
-
             if (collision.TryGetComponent(out Bullet bullet))
             {
                 gameObject.SetActive(false);
                 bullet.gameObject.SetActive(false);
             }
         }
-        private void Update()
-        {
-            transform.Translate(Vector3.up * Speed * Time.deltaTime);
-        }
-
     }
 }
-

@@ -1,18 +1,14 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
-namespace Enemy
+namespace Scripts.Enemy.Spawner
 {
     [RequireComponent(typeof(Spawner))]
     public class EnemyEnabler : MonoBehaviour
     {
+        private Spawner _spawner;
         [field: SerializeField] public int EnemiesAvaliable { get; private set; } = 1;
         [field: SerializeField] public int NewEnemyCooldown { get; private set; } = 30;
-
-        private Spawner _spawner;
-
 
         private void Start()
         {
@@ -22,13 +18,15 @@ namespace Enemy
 
         private IEnumerator NewEnemiesTimer()
         {
-            int enemyCount = _spawner.EnemyCount;
-            WaitForSeconds cooldown = new WaitForSeconds(NewEnemyCooldown);
+            var enemyCount = _spawner.EnemyCount;
+            var cooldown = new WaitForSeconds(NewEnemyCooldown);
+
             yield return cooldown;
 
             while (EnemiesAvaliable < enemyCount)
             {
                 EnemiesAvaliable++;
+
                 yield return cooldown;
             }
         }

@@ -1,11 +1,12 @@
+using Scripts.MainWeapon.Bullet;
 using UnityEngine;
 
-namespace Enemy
+namespace Scripts.Enemy.Weapon
 {
     public class EnemyBullet : Bullet
     {
         [SerializeField] private Movement _movement;
-        
+
         private void Update()
         {
             transform.Translate(Vector3.up * Speed * Time.deltaTime);
@@ -26,4 +27,3 @@ namespace Enemy
         }
     }
 }
-

@@ -1,25 +1,29 @@
+using System.Globalization;
 using TMPro;
 using UnityEngine;
 
-public class ArmorText : MonoBehaviour
+namespace Scripts.UI
 {
-    [SerializeField] private Player.Player _player;
-    [SerializeField] private TextMeshProUGUI _armor;
-         
-    private void OnEnable()
+    public class ArmorText : MonoBehaviour
     {
-        _player.ArmorChanged += OnArmorChanged;
-        _armor.text = _player.Armor.ToString();
-    }
+        [SerializeField] private Player.Player _player;
+        [SerializeField] private TextMeshProUGUI _armor;
 
-    private void OnDisable()
-    {
-        _player.ArmorChanged -= OnArmorChanged;
-    }
+        private void OnEnable()
+        {
+            _player.ArmorChanged += OnArmorChanged;
+            _armor.text = _player.Armor.ToString(CultureInfo.InvariantCulture);
+        }
 
-    private void OnArmorChanged(float value)
-    {
-        string text = value.ToString();
-        _armor.text = text;
+        private void OnDisable()
+        {
+            _player.ArmorChanged -= OnArmorChanged;
+        }
+
+        private void OnArmorChanged(float value)
+        {
+            var text = value.ToString(CultureInfo.InvariantCulture);
+            _armor.text = text;
+        }
     }
 }

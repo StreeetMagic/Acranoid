@@ -1624,6 +1624,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1013547954 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2956717156873865945, guid: 6d2b1acf258c4cf44837a7a12f34f61a, type: 3}
+  m_PrefabInstance: {fileID: 2956717156893486744}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1118616122
 GameObject:
   m_ObjectHideFlags: 0
@@ -2259,7 +2264,40 @@ PrefabInstance:
       propertyPath: _activeEnemyPool
       value: 
       objectReference: {fileID: 327749142}
-    m_RemovedComponents: []
+    - target: {fileID: 6702807906257300596, guid: 6d2b1acf258c4cf44837a7a12f34f61a, type: 3}
+      propertyPath: _container
+      value: 
+      objectReference: {fileID: 1013547954}
+    - target: {fileID: 6702807906257300596, guid: 6d2b1acf258c4cf44837a7a12f34f61a, type: 3}
+      propertyPath: _activeBuffPool
+      value: 
+      objectReference: {fileID: 1218635136}
+    - target: {fileID: 6702807906257300596, guid: 6d2b1acf258c4cf44837a7a12f34f61a, type: 3}
+      propertyPath: _activeEnemyPool
+      value: 
+      objectReference: {fileID: 327749142}
+    - target: {fileID: 6702807906257300596, guid: 6d2b1acf258c4cf44837a7a12f34f61a, type: 3}
+      propertyPath: _buffs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6702807906257300596, guid: 6d2b1acf258c4cf44837a7a12f34f61a, type: 3}
+      propertyPath: _buffs.Array.data[0]
+      value: 
+      objectReference: {fileID: 5044013537897360115, guid: 26df1f07299095441a120a74d74a2856, type: 3}
+    - target: {fileID: 6702807906257300596, guid: 6d2b1acf258c4cf44837a7a12f34f61a, type: 3}
+      propertyPath: _buffs.Array.data[1]
+      value: 
+      objectReference: {fileID: 3783307293908559051, guid: eecc2e5c6778ebe4a851c1f34820996c, type: 3}
+    - target: {fileID: 6702807906257300596, guid: 6d2b1acf258c4cf44837a7a12f34f61a, type: 3}
+      propertyPath: _buffs.Array.data[2]
+      value: 
+      objectReference: {fileID: 2508637908205926571, guid: 4b2dff647179ef44d805df4993124f2f, type: 3}
+    - target: {fileID: 6702807906257300596, guid: 6d2b1acf258c4cf44837a7a12f34f61a, type: 3}
+      propertyPath: <Capacity>k__BackingField
+      value: 20
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2956717156052783509, guid: 6d2b1acf258c4cf44837a7a12f34f61a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6d2b1acf258c4cf44837a7a12f34f61a, type: 3}
 --- !u!1001 &3168380071640405802
 PrefabInstance:

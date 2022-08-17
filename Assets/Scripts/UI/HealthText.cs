@@ -1,25 +1,29 @@
+using System.Globalization;
 using TMPro;
 using UnityEngine;
 
-public class HealthText : MonoBehaviour
+namespace Scripts.UI
 {
-    [SerializeField] private Player.Player _player;
-    [SerializeField] private TextMeshProUGUI _health;
-         
-    private void OnEnable()
+    public class HealthText : MonoBehaviour
     {
-        _player.HealthChanged += OnHealthChanged;
-        _health.text = _player.Health.ToString();
-    }
+        [SerializeField] private Player.Player _player;
+        [SerializeField] private TextMeshProUGUI _health;
 
-    private void OnDisable()
-    {
-        _player.HealthChanged -= OnHealthChanged;
-    }
+        private void OnEnable()
+        {
+            _player.HealthChanged += OnHealthChanged;
+            _health.text = _player.Health.ToString(CultureInfo.InvariantCulture);
+        }
 
-    private void OnHealthChanged(float value)
-    {
-        string text = value.ToString();
-        _health.text = text;
+        private void OnDisable()
+        {
+            _player.HealthChanged -= OnHealthChanged;
+        }
+
+        private void OnHealthChanged(float value)
+        {
+            var text = value.ToString(CultureInfo.InvariantCulture);
+            _health.text = text;
+        }
     }
 }

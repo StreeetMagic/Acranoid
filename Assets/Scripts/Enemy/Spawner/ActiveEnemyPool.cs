@@ -1,11 +1,15 @@
+using System;
 using UnityEngine;
-using Enemy;
 
-public class ActiveEnemyPool : MonoBehaviour
+namespace Scripts.Enemy.Spawner
 {
-    public event System.Action<Enemy.Enemy> EnemyDied;
-
-    public void GetEnemyTransform(Enemy.Enemy enemy)
+    public class ActiveEnemyPool : MonoBehaviour
     {
-        EnemyDied?.Invoke(enemy);
-    }}
+        public event Action<Enemy> EnemyDied;
+
+        public void GetEnemyTransform(Enemy enemy)
+        {
+            EnemyDied?.Invoke(enemy);
+        }
+    }
+}

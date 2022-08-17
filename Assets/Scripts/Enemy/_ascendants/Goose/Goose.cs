@@ -1,12 +1,10 @@
-namespace Enemy
+namespace Scripts.Enemy.Goose
 {
-    public class Owl : Enemy
+    public class Goose : Enemy
     {
         private void Update()
         {
-            Movement.MoveY();
             Movement.MoveLeft();
         }
     }
 }
-

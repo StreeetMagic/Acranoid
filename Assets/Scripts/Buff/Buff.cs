@@ -1,34 +1,33 @@
-using System;
 using UnityEngine;
 
-public abstract class Buff : MonoBehaviour
+namespace Scripts.Buff
 {
-   
-    private Transform _activeContainer;
-
-    [field: SerializeField] public float MoveSpeed { get; protected set; } = -.5f;
-    public float Score => 5;
-
-    private void Update()
+    public abstract class Buff : MonoBehaviour
     {
-        transform.Translate(new Vector3(MoveSpeed * Time.deltaTime, 0, 0));
-    }
+        private Transform _activeContainer;
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.TryGetComponent<Player.Player>(out Player.Player player))
+        [field: SerializeField] public float MoveSpeed { get; protected set; } = -.5f;
+        private float Score => 5;
+
+        private void Update()
         {
+            transform.Translate(new Vector3(MoveSpeed * Time.deltaTime, 0, 0));
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (!collision.TryGetComponent<Player.Player>(out var player)) return;
             Upgrade(player);
             player.GainScore(Score);
             gameObject.SetActive(false);
         }
-    }
 
-    protected abstract void Upgrade(Player.Player player);
+        protected abstract void Upgrade(Player.Player player);
 
-    public void SetActiveContainer(Transform container)
-    {
-        _activeContainer = container;
-        transform.SetParent(_activeContainer);
+        public void SetActiveContainer(Transform container)
+        {
+            _activeContainer = container;
+            transform.SetParent(_activeContainer);
+        }
     }
 }

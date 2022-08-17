@@ -1,19 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-namespace Player
+namespace Scripts.Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
-
     public class Movement : MonoBehaviour
     {
         [SerializeField] private float _moveSpeed = 10f;
+        private Vector2 _direction;
+        private PlayerInputActions _playerUinputActions;
 
         private Rigidbody2D _rigidbody2D;
-        PlayerInputActions _playerUinputActions;
-        private Vector2 _direction;
 
         private void Awake()
         {
@@ -45,7 +41,7 @@ namespace Player
 
         private void Move(Vector2 direction)
         {
-            float scaledMoveSpeed = _moveSpeed * Time.deltaTime;
+            var scaledMoveSpeed = _moveSpeed * Time.deltaTime;
             Vector3 move = direction;
             Vector2 position = transform.position + move * scaledMoveSpeed;
             _rigidbody2D.MovePosition(position);

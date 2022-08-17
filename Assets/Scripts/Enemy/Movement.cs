@@ -1,28 +1,32 @@
+using Scripts.Enemy.Spawner;
 using UnityEngine;
 
-namespace Enemy
+namespace Scripts.Enemy
 {
     //[RequireComponent(typeof(MoveSpeedUpgrader))]
     public class Movement : MonoBehaviour
     {
         [SerializeField] private MoveSpeedUpgrader _moveSpeedUpgrader;
-        
+
         [field: Header("Borders & direction flags:")]
-        [field: SerializeField] private int YBorder { get; set; } = 4;
+        [field: SerializeField]
+        private int YBorder { get; set; } = 4;
+
         [field: SerializeField] private int XBorder { get; set; } = 6;
         [field: SerializeField] private bool GoesTop { get; set; } = true;
         [field: SerializeField] private bool GoesLeft { get; set; } = true;
 
         [field: Header("Move speed values:")]
-        [field: SerializeField] private float DefaultXMoveSpeed { get; set; } = 3;
+        [field: SerializeField]
+        private float DefaultXMoveSpeed { get; set; } = 3;
+
         [field: SerializeField] private float DefaultYMoveSpeed { get; set; } = 2;
         [field: SerializeField] private float CurrentXMoveSpeed { get; set; }
         [field: SerializeField] private float CurrentYMoveSpeed { get; set; }
 
-
         private void OnEnable()
         {
-            _moveSpeedUpgrader = GetComponent<MoveSpeedUpgrader>(); 
+            _moveSpeedUpgrader = GetComponent<MoveSpeedUpgrader>();
             CurrentXMoveSpeed = DefaultXMoveSpeed * _moveSpeedUpgrader.CurrentMultilier;
             CurrentYMoveSpeed = DefaultYMoveSpeed * _moveSpeedUpgrader.CurrentMultilier;
         }
@@ -84,4 +88,3 @@ namespace Enemy
         }
     }
 }
-

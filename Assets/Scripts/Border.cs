@@ -1,9 +1,12 @@
 using UnityEngine;
 
-public class Border : MonoBehaviour
+namespace Scripts
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    public class Border : MonoBehaviour
     {
-        collision.gameObject.SetActive(false);
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            collision.gameObject.SetActive(false);
+        }
     }
 }

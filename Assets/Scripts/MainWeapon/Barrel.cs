@@ -1,3 +1,8 @@
 using UnityEngine;
 
-public class Barrel : MonoBehaviour { }
+namespace Scripts.MainWeapon
+{
+    public class Barrel : MonoBehaviour
+    {
+    }
+}

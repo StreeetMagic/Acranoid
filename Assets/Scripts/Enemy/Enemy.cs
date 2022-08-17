@@ -1,14 +1,14 @@
-using UnityEngine;
 using System;
+using Scripts.Enemy.Spawner;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
-namespace Enemy
+namespace Scripts.Enemy
 {
     [RequireComponent(typeof(Movement))]
     public abstract class Enemy : MonoBehaviour
     {
-        public event Action<float> HealthChanged;
-
-        [SerializeField] private MainWeapon _mainWeapon;
+        [SerializeField] private MainWeapon.MainWeapon _mainWeapon;
         [SerializeField] private Transform _activeBulletPool;
         [SerializeField] private Transform _inactivePool;
         [SerializeField] private Transform _activePoolTransform;
@@ -20,7 +20,6 @@ namespace Enemy
         [field: SerializeField] public float CurrentHealth { get; protected set; }
         [field: SerializeField] public int XPosition { get; protected set; }
         [field: SerializeField] public int MaxCount { get; protected set; }
-
 
         private void Awake()
         {
@@ -49,12 +48,15 @@ namespace Enemy
                 Die();
             }
         }
-        
+
+        public event Action<float> HealthChanged;
+
         private int GetRandomXposition()
         {
-            int minX = 2;
-            int maxX = 7;
-            return UnityEngine.Random.Range(minX, maxX);
+            var minX = 2;
+            var maxX = 7;
+
+            return Random.Range(minX, maxX);
         }
 
         private void ReAttachParent()
@@ -74,11 +76,9 @@ namespace Enemy
             CurrentHealth -= damage;
             HealthChanged?.Invoke(CurrentHealth / MaxHealth);
 
-            if (CurrentHealth <= 0)
-            {
-                Die();
-            }
+            if (CurrentHealth <= 0) Die();
         }
+
         public void SetActiveBulletPool(Transform pool)
         {
             _activeBulletPool = pool;
@@ -90,7 +90,5 @@ namespace Enemy
             _activePoolTransform = parent.transform;
             _activePool = parent;
         }
-
-
     }
 }
